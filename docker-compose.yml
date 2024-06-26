@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  shopify-cli:
+    image: my-shopify-cli
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3456:3456"
+    environment:
+      - SHOPIFY_SHOP=telanthric.myshopify.com
+    network_mode: host
