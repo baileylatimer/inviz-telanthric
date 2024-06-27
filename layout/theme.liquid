@@ -250,13 +250,16 @@
         }
       }
       <style>
-  @font-face {
-    font-family: "Hello Roti";
-    src: url("{{ 'Hello Roti.otf' | asset_url }}") format("opentype");
+        @font-face {
+    font-family: 'Hello Roti';
+    src: url('HelloRoti.woff2') format('woff2'),
+        url('HelloRoti.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-  }
-  
+    font-display: swap;
+}
+
+
   @font-face {
     font-family: "PPNeueBit-Bold";
     src: url("{{ 'PPNeueBit-Bold.otf' | asset_url }}") format("opentype");
