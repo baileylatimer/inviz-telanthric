@@ -1,0 +1,143 @@
+
+
+  
+  <section class="relative flex items-center justify-center text-center bg-black pb-48" style="min-height: 356px">
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10"></div>
+    
+    <!-- Hero Image -->
+    <div class="absolute inset-0 z-10 flex items-center justify-center">
+      {% if section.settings.hero_image != blank %}
+        <img src="{{ section.settings.hero_image | img_url: 'master' }}" alt="Hero Image" class="absolute h-full w-auto object-cover">
+      {% endif %}
+    </div>
+    
+    <!-- Text Content -->
+    <div class="relative  mx-auto px-4 color-primary h-full flex flex-col justify-between items-between">
+      <h1 class=" color-primary relative z-0 absolute w-full top-h1 " style="">{{ section.settings.hero_heading }}</h1>
+      <h3 class=" color-primary  z-20 absolute w-full btm-h1" style="">{{ section.settings.hero_subheading }}</h3>
+    </div>
+  </section>
+  
+
+
+
+<style>
+  /* Custom Styles for Hero Section */
+
+  .top-h1 {
+  top: -10rem; 
+  left: 50%; 
+  transform: translatex(-50%)
+}
+
+.btm-h1 {
+  bottom: -15rem; 
+  left: 50%; 
+  transform: translatex(-50%)
+
+}
+  @media screen and (min-width: 750px) {
+.top-h1 {
+  top: -5rem; 
+  left: 50%; 
+  transform: translatex(-50%)
+}
+
+.btm-h1 {
+  bottom: -10rem; 
+  left: 50%; 
+  transform: translatex(-50%)
+
+}
+}
+
+.hero-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: black;
+}
+
+.hero-section .gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, black, transparent, black);
+  z-index: 10;
+}
+
+.hero-section .hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-section h1 {
+  position: relative;
+  z-index: 20;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.hero-section h3 {
+  position: relative;
+  z-index: 30;
+  font-size: 1.5rem;
+}
+
+</style>
+
+{% schema %}
+  {
+    "name": "Hero Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "hero_heading",
+        "label": "Heading",
+        "default": "TELANTHIC TITANS"
+      },
+      {
+        "type": "text",
+        "id": "hero_subheading",
+        "label": "Subheading",
+        "default": "ANY PURCHASE UNLOCKS LIMITED SKIN"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero_image",
+        "label": "Hero Image"
+      },
+      {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Heading Color",
+        "default": "#00FF00"
+      },
+      {
+        "type": "color",
+        "id": "subheading_color",
+        "label": "Subheading Color",
+        "default": "#00FF00"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Section",
+        "category": "Custom"
+      }
+    ]
+  }
+  {% endschema %}

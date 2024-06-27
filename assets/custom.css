@@ -1,0 +1,38 @@
+h1, h2, h3, h4, h5 {
+  font-family: 'Hello Roti' !important;
+}
+
+
+:root {
+  --color-primary: #A5FA57;
+}
+.color-primary {
+ color: var(--color-primary) !important
+}
+
+.color-primary h1,
+.color-primary h2,
+.color-primary h3,
+.color-primary h4,
+.color-primary h5,
+.color-primary p, {
+  color: var(--color-primary) !important
+ }
+
+ h1, .h1 {
+  font-size: 45px;
+ }
+
+ h3, .h3 {
+  font-size: 22px;
+ }
+
+ @media screen and (min-width: 750px) {
+  h1, .h1 {
+    font-size: 143px;
+   }
+  
+   h3, .h3 {
+    font-size: 60px;
+   }
+ }
