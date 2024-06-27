@@ -2,6 +2,13 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "bg_footer_EnQzUw": {
+      "type": "bg-footer",
+      "settings": {
+        "title": "Default Heading",
+        "image": "shopify:\/\/shop_images\/bg-footer.jpg"
+      }
+    },
     "footer": {
       "type": "footer",
       "disabled": true,
@@ -22,6 +29,7 @@
     }
   },
   "order": [
+    "bg_footer_EnQzUw",
     "footer"
   ]
 }

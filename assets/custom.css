@@ -82,9 +82,15 @@ body {
   text-transform: uppercase;
   background: black !important;
   color: var(--color-primary) !important;
-  font-family: 'PPNeueBit-Bold', sans-serif !important;
+  font-family: 'Hello Roti', sans-serif !important;
   font-size: 18px;
+  border: 5px solid black
+}
 
+.btn:hover {
+  background: transparent !important;
+  color: black !important;
+  border: 5px solid black
 }
 
 @media screen and (min-width: 750px) {
@@ -101,6 +107,13 @@ body {
   text-transform: uppercase;
   background: var(--color-primary) !important;
   color: black !important;
+  border: 5px solid var(--color-primary)
+}
+
+.btn.btn--ghost:hover {
+  background: transparent !important;
+  color: var(--color-primary) !important;
+  border: 5px solid var(--color-primary)
 }
 
 
@@ -110,4 +123,8 @@ body {
 
 .br-top {
 
+}
+
+.cart-count-bubble {
+  background: var(--color-primary) !important;
 }

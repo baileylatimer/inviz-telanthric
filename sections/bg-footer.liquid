@@ -1,0 +1,36 @@
+<div class="relative">
+<img class="vinyl" src="{{ section.settings.image | img_url: 'master' }}"/>
+</div>
+
+<style>
+  .vinyl {
+width: 100vw;
+}
+</style>
+
+
+{% schema %}
+  {
+    "name": "BG Footer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Default Heading"
+      },
+
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "BG Footer",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}
