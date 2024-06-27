@@ -638,6 +638,11 @@ video {
   margin-right: -0.5rem;
 }
 
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
 .mt-48 {
   margin-top: 12rem;
 }
@@ -854,6 +859,14 @@ video {
 
 .text-center {
   text-align: center;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .uppercase {
