@@ -79,24 +79,12 @@
         .then(response => response.json())
         .then(data => {
           console.log('Product added to cart:', data);
-          alert('Product added to cart!');
-          openCartDrawer(); // Trigger the cart drawer to open
+          window.location.href = '/cart'; // Redirect to the cart page
         })
         .catch(error => {
           console.error('Error adding product to cart:', error);
           alert('There was an error adding the product to the cart.');
         });
-      }
-
-      function openCartDrawer() {
-        // Dispatch a custom event to open the cart drawer
-        const event = new CustomEvent('cart:refresh', {
-          bubbles: true,
-          detail: {
-            state: 'open'
-          }
-        });
-        document.dispatchEvent(event);
       }
     });
   </script>
