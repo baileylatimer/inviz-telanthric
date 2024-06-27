@@ -1,0 +1,168 @@
+
+  
+  <section class="three-column-section py-6 px-6 lg:px-0">
+    <div class="container mx-auto  br bn">
+      <div class="flex flex-wrap -mx-2">
+        <!-- First Column -->
+        <div class="w-full md:w-1/2 px-2 md:mb-0 bn g-col-1">
+          <div class="bg-gradient  p-6 flex flex-col gap-12 justify-center items-center  py-24">
+            <h3 class="color-primary">{{ section.settings.column_one_heading }}</h3>
+            <a href="{{ section.settings.column_one_button_url }}" class="btn btn--ghost">{{ section.settings.column_one_button_label }}</a>
+          </div>
+        </div>
+        <!-- Second Column -->
+        <div class="w-full md:w-1/2 px-2  md:mb-0 bn g-col-2 ">
+          <div class="bg-gradient p-6  flex flex-col gap-12 justify-center items-center  py-24">
+            <h3 class="color-primary">{{ section.settings.column_two_heading }}</h3>
+            <a href="{{ section.settings.column_two_button_url }}" class="btn btn--ghost">{{ section.settings.column_two_button_label }}</a>
+          </div>
+        </div>
+      </div>
+      <!-- Third Column -->
+      <div class="w-full g-col-3">
+        <div class="bg-gradient p-6 text-center py-24">
+          <h3 class="color-primary">{{ section.settings.column_three_heading }}</h3>
+          <div class="flex justify-center space-x-16 mt-10 lg:mt-16">
+
+            {% if section.settings.instagram_url %}
+              <a href="{{ section.settings.instagram_url }}" target="_blank" class="social-icon"><img src="{{ 'icon-x.svg' | asset_url }}" alt="X"></a>
+            {% endif %}
+            {% if section.settings.youtube_url %}
+              <a href="{{ section.settings.youtube_url }}" target="_blank" class="social-icon"><img src="{{ 'icon-youtube.svg' | asset_url }}" alt="YouTube"></a>
+            {% endif %}
+            {% if section.settings.discord_url %}
+              <a href="{{ section.settings.discord_url }}" target="_blank" class="social-icon"><img src="{{ 'icon-discord.svg' | asset_url }}" alt="Discord"></a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  
+  <style>
+    @media screen and (min-width: 750px) {
+    .social-icon {
+      transform: scale(1.6);
+    }
+    }
+    .bg-green-400 {
+      background-color: #A5FA57;
+    }
+  
+    .bg-gradient {
+      background: linear-gradient(217deg, rgba(0, 0, 0, 0.00) 2.15%, rgba(181, 25, 4, 0.24) 50.18%, rgba(0, 0, 0, 0.00) 98.2%);
+    }
+
+    .g-col-1 {
+      border-radius: 15px 15px 0 0px;
+    }
+    @media screen and (min-width: 750px) {
+      .g-col-1 {
+        border-radius: 30px 0 0 0px;
+      }
+    }
+
+    .g-col-2 {
+      border-radius: 0 ;
+    }
+    @media screen and (min-width: 750px) {
+      .g-col-2 {
+        border-radius: 0 30px  0 0px;
+      }
+    }
+  
+  
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    .social-icon img {
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+  
+
+
+
+  {% schema %}
+    {
+      "name": "Three Column Section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "column_one_heading",
+          "label": "Column One Heading",
+          "default": "Have a Code?"
+        },
+        {
+          "type": "url",
+          "id": "column_one_button_url",
+          "label": "Column One Button URL"
+        },
+        {
+          "type": "text",
+          "id": "column_one_button_label",
+          "label": "Column One Button Label",
+          "default": "Redeem Now"
+        },
+        {
+          "type": "text",
+          "id": "column_two_heading",
+          "label": "Column Two Heading",
+          "default": "Buy the Game"
+        },
+        {
+          "type": "url",
+          "id": "column_two_button_url",
+          "label": "Column Two Button URL"
+        },
+        {
+          "type": "text",
+          "id": "column_two_button_label",
+          "label": "Column Two Button Label",
+          "default": "Purchase on roblox.com"
+        },
+        {
+          "type": "text",
+          "id": "column_three_heading",
+          "label": "Column Three Heading",
+          "default": "Join the Army"
+        },
+        {
+          "type": "url",
+          "id": "tiktok_url",
+          "label": "TikTok URL"
+        },
+        {
+          "type": "url",
+          "id": "instagram_url",
+          "label": "Instagram URL"
+        },
+        {
+          "type": "url",
+          "id": "youtube_url",
+          "label": "YouTube URL"
+        },
+        {
+          "type": "url",
+          "id": "discord_url",
+          "label": "Discord URL"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Three Column Section",
+          "category": "Custom"
+        }
+      ]
+    }
+    {% endschema %}

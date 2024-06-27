@@ -249,11 +249,22 @@
           font-size: 1.6rem;
         }
       }
+      <style>
+  @font-face {
+    font-family: "Hello Roti";
+    src: url("{{ 'Hello Roti.otf' | asset_url }}") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "PPNeueBit-Bold";
+    src: url("{{ 'PPNeueBit-Bold.otf' | asset_url }}") format("opentype");
+    font-weight: bold;
+    font-style: normal;
+  }
+</style>
 
-      @font-face {
-        font-family: "Hello Roti" !important;
-        src: url("{{ 'Hello Roti.otf' | asset_url }}") format("opentype");
-      }
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}

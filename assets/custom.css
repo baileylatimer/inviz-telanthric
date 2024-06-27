@@ -72,6 +72,8 @@ body {
   }
 }
 
+
+
 .btn {
   width: 100%;
   display: flex;
@@ -80,4 +82,32 @@ body {
   text-transform: uppercase;
   background: black !important;
   color: var(--color-primary) !important;
+  font-family: 'PPNeueBit-Bold', sans-serif !important;
+  font-size: 18px;
+
+}
+
+@media screen and (min-width: 750px) {
+.btn {
+  font-size: 24px
+}
+}
+
+.btn.btn--ghost {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  background: var(--color-primary) !important;
+  color: black !important;
+}
+
+
+.br-left {
+
+}
+
+.br-top {
+
 }
