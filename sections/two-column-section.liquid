@@ -1,0 +1,84 @@
+
+  
+
+  
+  <section class="product-two-column-section pt-6 pb-24 px-6 lg:px-0">
+    <div class="container mx-auto flex flex-wrap br bn">
+      {% if section.settings.selected_product %}
+        {% assign product = all_products[section.settings.selected_product] %}
+        <!-- First Column -->
+        <div class="w-full md:w-1/2 p-6 bg-green-400 p-col-1 flex flex-col justify-center">
+          <h3 class="color-black">{{ product.title }}</h3>
+          <p class="color-black">{{ product.description }}</p>
+          <a href="{{ product.url }}" class="btn">{{ section.settings.button_text }}</a>
+        </div>
+        <!-- Second Column -->
+        <div class="w-full md:w-1/2 p-6 bg-gradient">
+          {% if product.featured_image %}
+            <div class="flex justify-center items-center h-full">
+              <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}" class="h-auto w-auto">
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <p>Please select a product to display this section.</p>
+      {% endif %}
+    </div>
+  </section>
+  
+
+  <style>
+
+    .p-col-1 {
+      border-radius: 15px 15px 0 0px;
+    }
+    @media screen and (min-width: 750px) {
+      .p-col-1 {
+      border-radius: 30px 0 0 30px;
+    }
+    }
+/* Custom Styles for Product Two Column Section */
+.product-two-column-section .bg-green-400 {
+  background-color: #A5FA57;
+}
+
+.product-two-column-section .bg-gradient {
+  background: linear-gradient(217deg, rgba(0, 0, 0, 0.00) 2.15%, rgba(181, 25, 4, 0.24) 50.18%, rgba(0, 0, 0, 0.00) 98.2%);
+}
+
+.product-two-column-section .btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+
+  </style>
+  
+  {% schema %}
+    {
+      "name": "Two Column Section",
+      "settings": [
+        {
+          "type": "product",
+          "id": "selected_product",
+          "label": "Select Product"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Buy Now"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Two Column Section",
+          "category": "Custom"
+        }
+      ]
+    }
+    {% endschema %}

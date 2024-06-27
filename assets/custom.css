@@ -6,9 +6,18 @@ h1, h2, h3, h4, h5 {
 :root {
   --color-primary: #A5FA57;
 }
+
+body {
+  background-color: #000 !important;
+  color: var(--color-primary) !important
+}
 .color-primary {
  color: var(--color-primary) !important
 }
+.color-black {
+  color: black !important
+ }
+ 
 
 .color-primary h1,
 .color-primary h2,
@@ -25,6 +34,7 @@ h1, h2, h3, h4, h5 {
 
  h3, .h3 {
   font-size: 22px;
+  line-height: 100%;
  }
 
  @media screen and (min-width: 750px) {
@@ -36,3 +46,38 @@ h1, h2, h3, h4, h5 {
     font-size: 60px;
    }
  }
+
+ .br {
+  border-radius: 20px ;
+  -webkit-border-radius: 20px ;
+  -moz-border-radius: 20px ;
+  -ms-border-radius: 20px ;
+  -o-border-radius: 20px ;
+
+}
+
+.bn {
+  border: 3px solid #A5FA57;
+  box-shadow: 0px 0px 9px 0px #A5FA57;
+}
+
+ @media screen and (min-width: 750px) {
+  .br {
+    border-radius: 40px ;
+    -webkit-border-radius: 40px ;
+    -moz-border-radius: 40px ;
+    -ms-border-radius: 40px ;
+    -o-border-radius: 40px ;
+    border: 5px solid #A5FA57;
+  }
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  background: black !important;
+  color: var(--color-primary) !important;
+}
