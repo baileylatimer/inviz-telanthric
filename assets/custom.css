@@ -60,6 +60,7 @@ body {
  @media screen and (min-width: 750px) {
   h1, .h1 {
     font-size: 143px;
+    line-height: 80%;
    }
   
    h3, .h3 {
@@ -148,3 +149,42 @@ body {
 .cart-count-bubble {
   background: var(--color-primary) !important;
 }
+
+.limited {
+  font-family: 'Hello Roti', sans-serif !important;
+  font-size: 16px;
+  background-color: #B51904;
+  color: var(--color-primary);
+  /* border: 3px solid black; */
+  border-radius: .5rem;
+  width: fit-content;
+  padding: .5rem 1rem; 
+  -webkit-border-radius: .5rem;
+  -moz-border-radius: .5rem;
+  -ms-border-radius: .5rem;
+  -o-border-radius: .5rem;
+}
+
+.shimmer {
+  animation: shimmer 3s linear infinite;
+  -webkit-animation: shimmer 3s linear infinite;
+}
+
+.shimmer {
+  background: linear-gradient(-45deg,#B51904 40%,#F1503A 50%,#B51904 60%);
+    background-position-x: 0%;
+    background-size: auto;
+  background-size: 300%;
+  background-position-x: 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+
