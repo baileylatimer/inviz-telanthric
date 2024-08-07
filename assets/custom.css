@@ -43,6 +43,20 @@ body {
  }
  
 
+
+.slick-prev::before, .slick-next::before {
+  color: #5bc500 !important;
+}
+
+.slick-next {
+  right: -5px !important;
+}
+
+.slick-prev {
+  left: -5px !important;
+}
+
+
 .color-primary h1,
 .color-primary h2,
 .color-primary h3,
