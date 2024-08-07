@@ -10,13 +10,17 @@
         <h3 class="color-black">{{ product.title }}</h3>
         <p class="color-black my-12 font-bold">{{ product.description }}</p>
 
-        <button class="btn" data-variant-id="{{ first_variant.id }}">{{ section.settings.button_text }} - {{ first_variant.price | money }}</button>
+        {% if product.tags contains 'buy-now' %}
+          <button class="btn buy-now-btn" data-variant-id="{{ first_variant.id }}">{{ section.settings.button_text }} - {{ first_variant.price | money }}</button>
+        {% else %}
+          <button class="btn get-notified-btn" id="get-notified-btn">Get Notified</button>
+        {% endif %}
 
         <div class="countdown-timer flex mt-24 justify-center items-center gap-4 mb-6">
-          <div class="countdown-item"><span id="days" class="countdown-number"></span><span class="countdown-label">DAYS</span></div>
-          <div class="countdown-item"><span id="hours" class="countdown-number"></span><span class="countdown-label">HOURS</span></div>
-          <div class="countdown-item"><span id="minutes" class="countdown-number"></span><span class="countdown-label">MINS</span></div>
-          <div class="countdown-item"><span id="seconds" class="countdown-number"></span><span class="countdown-label">SECS</span></div>
+          <div class="countdown-item shimmer"><span id="days" class="countdown-number"></span><span class="countdown-label">DAYS</span></div>
+          <div class="countdown-item shimmer"><span id="hours" class="countdown-number"></span><span class="countdown-label">HOURS</span></div>
+          <div class="countdown-item shimmer"><span id="minutes" class="countdown-number"></span><span class="countdown-label">MINS</span></div>
+          <div class="countdown-item shimmer"><span id="seconds" class="countdown-number"></span><span class="countdown-label">SECS</span></div>
         </div>
       </div>
       <!-- Second Column -->
@@ -69,7 +73,6 @@
     }
     .countdown-item {
       text-align: center;
-      background: #000;
       border-radius: 0.5rem;
       padding: 1rem;
     }
@@ -86,14 +89,22 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const buttons = document.querySelectorAll('.product-two-column-section .btn');
+      const buyNowButtons = document.querySelectorAll('.product-two-column-section .buy-now-btn');
+      const getNotifiedButton = document.getElementById('get-notified-btn');
 
-      buttons.forEach(button => {
+      buyNowButtons.forEach(button => {
         button.addEventListener('click', function() {
           const variantId = this.getAttribute('data-variant-id');
           addToCart(variantId);
         });
       });
+
+      if (getNotifiedButton) {
+        getNotifiedButton.addEventListener('click', function() {
+          window._klOnsite = window._klOnsite || [];
+          window._klOnsite.push(['openForm', 'UxzpnT']);
+        });
+      }
 
       function addToCart(variantId) {
         fetch('/cart/add.js', {
