@@ -13,7 +13,13 @@
         {% if product.tags contains 'buy-now' %}
           <button class="btn buy-now-btn" data-variant-id="{{ first_variant.id }}">{{ section.settings.button_text }} - {{ first_variant.price | money }}</button>
         {% else %}
-          <button class="btn get-notified-btn" id="get-notified-btn">Get Notified</button>
+          <button class="klaviyo_form_trigger btn get-notified-btn" id="get-notified-btn">Get Notified</button>
+          <script type="text/javascript">
+            document.querySelector('.klaviyo_form_trigger').addEventListener('click', function (){
+              window._klOnsite = window._klOnsite || []; 
+              window._klOnsite.push(['openForm', 'UxzpnT']);
+            });
+            </script>
         {% endif %}
 
         <div class="flex flex-col justify-center items-center">
@@ -124,6 +130,7 @@
           window._klOnsite.push(['openForm', 'UxzpnT']);
         });
       }
+      
 
       function addToCart(variantId) {
         fetch('/cart/add.js', {
@@ -189,6 +196,8 @@
       initializeCountdown(endDate);
     });
   </script>
+
+
 </section>
 
 {% schema %}
