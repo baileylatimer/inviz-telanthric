@@ -16,11 +16,15 @@
           <button class="btn get-notified-btn" id="get-notified-btn">Get Notified</button>
         {% endif %}
 
-        <div class="countdown-timer flex mt-24 justify-center items-center gap-4 mb-6">
-          <div class="countdown-item shimmer"><span id="days" class="countdown-number"></span><span class="countdown-label">DAYS</span></div>
-          <div class="countdown-item shimmer"><span id="hours" class="countdown-number"></span><span class="countdown-label">HOURS</span></div>
-          <div class="countdown-item shimmer"><span id="minutes" class="countdown-number"></span><span class="countdown-label">MINS</span></div>
-          <div class="countdown-item shimmer"><span id="seconds" class="countdown-number"></span><span class="countdown-label">SECS</span></div>
+        <div class="flex flex-col justify-center items-center gap-6">
+          <div class="countdown-timer flex mt-24 justify-center items-center gap-4 mb-6">
+            <div class="countdown-item shimmer"><span id="days" class="countdown-number"></span><span class="countdown-label">DAYS</span></div>
+            <div class="countdown-item shimmer"><span id="hours" class="countdown-number"></span><span class="countdown-label">HOURS</span></div>
+            <div class="countdown-item shimmer"><span id="minutes" class="countdown-number"></span><span class="countdown-label">MINS</span></div>
+            <div class="countdown-item shimmer"><span id="seconds" class="countdown-number"></span><span class="countdown-label">SECS</span></div>
+          </div>
+          <p style="font-family: 'Hello Roti', sans-serif !important;
+          font-size: 16px; text-transform: uppercase; color: black">Coming soon</p>
         </div>
       </div>
       <!-- Second Column -->
@@ -84,6 +88,7 @@
     .countdown-label {
       font-size: 1rem;
       color: #5bc500;
+      font-weight: 700;
     }
   </style>
 
