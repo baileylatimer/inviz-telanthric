@@ -643,6 +643,11 @@ video {
   margin-bottom: 3rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .mb-6 {
   margin-bottom: 1.5rem;
 }
@@ -653,6 +658,14 @@ video {
 
 .mt-24 {
   margin-top: 6rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
 }
 
 .block {

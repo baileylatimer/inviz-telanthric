@@ -8,8 +8,18 @@
         <div class="limited shimmer mb-6 flex justify-center items-center gap-4">
           {% render 'icon-fire' %}Extremely Limited</div>
         <h3 class="color-black">{{ product.title }}</h3>
-        <p class="color-black my-12 font-bold">{{ product.description }}</p>
 
+        
+        <p class="color-black my-12 font-bold">{{ product.description }}</p>
+        {% if product.metafields.custom.product_details != blank %}
+          {% assign product_details = product.metafields.custom.product_details.value %}
+          {% assign product_details_array = product_details | parse_json %}
+          <ul class="mb-12">
+          {% for detail in product_details_array %}
+            <li class="my-2 color-black" style="font-family: 'Hello Roti', sans-serif;">{{ detail }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
         {% if product.tags contains 'buy-now' %}
           <button class="btn buy-now-btn" data-variant-id="{{ first_variant.id }}">{{ section.settings.button_text }} - {{ first_variant.price | money }}</button>
         {% else %}
