@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.4.7 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -648,6 +648,10 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
 .mb-6 {
   margin-bottom: 1.5rem;
 }
@@ -660,12 +664,16 @@ video {
   margin-top: 6rem;
 }
 
-.mt-12 {
-  margin-top: 3rem;
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
-.mb-12 {
-  margin-bottom: 3rem;
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-24 {
+  margin-bottom: 6rem;
 }
 
 .block {
@@ -704,6 +712,14 @@ video {
   width: 100%;
 }
 
+.w-4\/5 {
+  width: 80%;
+}
+
+.w-3 {
+  width: 0.75rem;
+}
+
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -740,8 +756,8 @@ video {
   gap: 1rem;
 }
 
-.gap-6 {
-  gap: 1.5rem;
+.gap-8 {
+  gap: 2rem;
 }
 
 .space-x-16 > :not([hidden]) ~ :not([hidden]) {
@@ -764,6 +780,10 @@ video {
 .bg-green-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(74 222 128 / var(--tw-bg-opacity));
+}
+
+.bg-transparent {
+  background-color: transparent;
 }
 
 .bg-gradient-to-b {
@@ -817,6 +837,16 @@ video {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .pb-24 {
@@ -886,6 +916,10 @@ video {
 @media (min-width: 1024px) {
   .lg\:mt-16 {
     margin-top: 4rem;
+  }
+
+  .lg\:w-3\/5 {
+    width: 60%;
   }
 
   .lg\:flex-row {

@@ -1,23 +1,44 @@
 {% schema %}
   {
     "name": "Redeem Code",
-    "settings": []
+    "settings": [],
+    "presets": [
+      {
+        "name": "Redeem Code",
+        "category": "Custom"
+      }
+    ]
   }
   {% endschema %}
+
+  <style>
+    #redeem-container {
+
+    }
+    .bg-gradient {
+      background: linear-gradient(217deg, rgba(0, 0, 0, 0.00) 2.15%, rgba(181, 25, 4, 0.24) 50.18%, rgba(0, 0, 0, 0.00) 98.2%);
+    }
+    @media (min-width: 1024px) {
+  .lg\:w-3\/5 {
+    width: 60% !important;
+  }
+}
+  </style>
   
   <div class="page-width">
-    <h1>{{ page.title }}</h1>
+
     
-    <div id="redeem-container">
-      <div>
-        <label for="code">Code:</label>
-        <input type="text" id="code" name="code" required>
+    <div id="redeem-container" class="bg-gradient br bn flex flex-col items-center justify-center gap-8 px-6 py-12">
+      <h3 class="color-primary mb-12">Redeem your code</h3>
+      <div class="flex flex-col lg:w-3/5">
+        <label for="code" style="font-family: 'Hello Roti', sans-serif;">Code</label>
+        <input class="bn  br py-4 bg-transparent mt-4" type="text" id="code" name="code" required>
       </div>
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+      <div class="flex flex-col lg:w-3/5">
+        <label for="username" style="font-family: 'Hello Roti', sans-serif;">Username</label>
+        <input class="bn br py-4 bg-transparent  mt-4" type="text" id="username" name="username" required>
       </div>
-      <button id="redeem-button">Redeem</button>
+      <button class="btn btn--ghost mt-24  lg:w-3/5" id="redeem-button">Redeem</button>
     </div>
   
     <div id="check-container" style="display: none;">
