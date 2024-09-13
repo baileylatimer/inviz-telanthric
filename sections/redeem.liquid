@@ -1,0 +1,127 @@
+{% schema %}
+  {
+    "name": "Redeem Code",
+    "settings": []
+  }
+  {% endschema %}
+  
+  <div class="page-width">
+    <h1>{{ page.title }}</h1>
+    
+    <div id="redeem-container">
+      <div>
+        <label for="code">Code:</label>
+        <input type="text" id="code" name="code" required>
+      </div>
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <button id="redeem-button">Redeem</button>
+    </div>
+  
+    <div id="check-container" style="display: none;">
+      <p>Are you sure you want to redeem this code?</p>
+      <button id="claim-button">Claim</button>
+      <button id="cancel-button">Cancel</button>
+    </div>
+  
+    <div id="result-container"></div>
+  </div>
+  
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const redeemButton = document.getElementById('redeem-button');
+      const claimButton = document.getElementById('claim-button');
+      const cancelButton = document.getElementById('cancel-button');
+      const redeemContainer = document.getElementById('redeem-container');
+      const checkContainer = document.getElementById('check-container');
+      const resultContainer = document.getElementById('result-container');
+  
+      redeemButton.addEventListener('click', function() {
+        const code = document.getElementById('code').value;
+        const username = document.getElementById('username').value;
+  
+        if (!code || !username) {
+          resultContainer.textContent = 'Please enter both code and username.';
+          return;
+        }
+  
+        fetch('https://api.telanthric.shop/redeem', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ code, username }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            checkQueue(username);
+          } else {
+            resultContainer.textContent = data.message || 'An error occurred. Please try again.';
+          }
+        })
+        .catch(error => {
+          resultContainer.textContent = 'An error occurred. Please try again.';
+          console.error('Error:', error);
+        });
+      });
+  
+      function checkQueue(username) {
+        fetch('https://api.telanthric.shop/check', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.queuePrompt) {
+            redeemContainer.style.display = 'none';
+            checkContainer.style.display = 'block';
+          } else {
+            resultContainer.textContent = 'Username is not in queue. Please try again.';
+          }
+        })
+        .catch(error => {
+          resultContainer.textContent = 'An error occurred. Please try again.';
+          console.error('Error:', error);
+        });
+      }
+  
+      claimButton.addEventListener('click', function() {
+        const username = document.getElementById('username').value;
+  
+        fetch('https://api.telanthric.shop/claim', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            resultContainer.textContent = `Redemption successful! Rewards: ${data.rewards.join(', ')}`;
+          } else {
+            resultContainer.textContent = data.message || 'An error occurred. Please try again.';
+          }
+          checkContainer.style.display = 'none';
+          redeemContainer.style.display = 'block';
+        })
+        .catch(error => {
+          resultContainer.textContent = 'An error occurred. Please try again.';
+          console.error('Error:', error);
+        });
+      });
+  
+      cancelButton.addEventListener('click', function() {
+        checkContainer.style.display = 'none';
+        redeemContainer.style.display = 'block';
+        resultContainer.textContent = '';
+      });
+    });
+  </script>
