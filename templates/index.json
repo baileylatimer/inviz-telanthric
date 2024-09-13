@@ -22,7 +22,7 @@
       "type": "three-column-section",
       "settings": {
         "column_one_heading": "Have a Code?",
-        "column_one_button_url": "",
+        "column_one_button_url": "shopify:\/\/pages\/redeem",
         "column_one_button_label": "Redeem Now",
         "column_two_heading": "Play the Game",
         "column_two_button_url": "https:\/\/www.roblox.com\/games\/13775256536\/EP-74-PART-1-Toilet-Tower-Defense",
