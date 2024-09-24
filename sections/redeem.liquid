@@ -73,12 +73,12 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-              'Access-Control-Allow-Headers': '*',
+             'Access-Control-Allow-Origin',
           },
           body: JSON.stringify({ code, username }),
         })
         .then(response => response.json())
-        .then(data => {
+        .then(data => 
         console.log(data)
           if (data.success) {
             checkQueue(username);
