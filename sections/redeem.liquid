@@ -82,7 +82,7 @@
           if (data.success) {
             checkQueue(username);
           } else {
-            resultContainer.textContent = data.message || 'An error occurred. Please try again.';
+            resultContainer.textContent = data.message || response.error || 'An error occurred. Please try again.';
           }
         })
         .catch(error => {
