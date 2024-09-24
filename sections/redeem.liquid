@@ -125,6 +125,7 @@
         })
         .then(response => response.json())
         .then(data => {
+          console.log(data)
           if (data.success) {
             resultContainer.textContent = `Redemption successful! Rewards: ${data.rewards.join(', ')}`;
           } else {
