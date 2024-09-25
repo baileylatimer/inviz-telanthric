@@ -80,9 +80,11 @@
         .then(data => {
           console.log(data)
           if (data.success) {
+          setTimeout(() => {
             checkQueue(username);
+          }, 2000);
           } else {
-            resultContainer.textContent = data.message || response.error || 'An error occurred. Please try again.';
+            resultContainer.textContent = data.message || data.error || 'An error occurred. Please try again.';
           }
         })
         .catch(error => {
@@ -127,7 +129,7 @@
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            resultContainer.textContent = `Redemption successful! Rewards: ${data.rewards.join(', ')}`;
+            resultContainer.textContent = `#${data.orderUnit} Redemption successful! Rewards: ${data.rewards.join(', ')}`;
           } else {
             resultContainer.textContent = data.message || 'An error occurred. Please try again.';
           }
