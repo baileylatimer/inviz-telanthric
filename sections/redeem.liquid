@@ -103,7 +103,7 @@
         })
         .then(response => response.json())
         .then(data => {
-          if (data.queuePrompt) {
+          if (data.prompt) {
             redeemContainer.style.display = 'none';
             checkContainer.style.display = 'block';
           } else {
