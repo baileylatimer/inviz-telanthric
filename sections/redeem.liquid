@@ -9,143 +9,188 @@
       }
     ]
   }
-  {% endschema %}
+{% endschema %}
 
-  <style>
-    #redeem-container {
-
-    }
-    .bg-gradient {
-      background: linear-gradient(217deg, rgba(0, 0, 0, 0.00) 2.15%, rgba(181, 25, 4, 0.24) 50.18%, rgba(0, 0, 0, 0.00) 98.2%);
-    }
-    @media (min-width: 1024px) {
-  .lg\:w-3\/5 {
-    width: 60% !important;
+<style>
+  .bg-gradient {
+    background: linear-gradient(217deg, rgba(0, 0, 0, 0.00) 2.15%, rgba(181, 25, 4, 0.24) 50.18%, rgba(0, 0, 0, 0.00) 98.2%);
   }
-}
-  </style>
-  
-  <div class="page-width">
+  @media (min-width: 1024px) {
+    .lg\:w-3\/5 {
+      width: 60% !important;
+    }
+  }
+  .spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #000;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 9px 0px #000;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  .btn:hover .spinner {
+    border: 3px solid #5bc500;
+    border-top: 3px solid transparent;
+    box-shadow: 0px 0px 9px 0px #5bc500;
+  }
+</style>
 
-    
-    <div id="redeem-container" class="bg-gradient br bn flex flex-col items-center justify-center gap-8 px-6 py-12">
-      <h3 class="color-primary mb-12">Redeem your code</h3>
-      <div class="flex flex-col  w-full lg:w-3/5">
-        <label for="code" class="pl-6" style="font-family: 'Hello Roti', sans-serif;">Code</label>
-        <input class="bn  br py-4 bg-transparent mt-4 px-6" type="text" id="code" name="code" required>
-      </div>
-      <div class="flex flex-col  w-full lg:w-3/5">
-        <label for="username" class="pl-6" style="font-family: 'Hello Roti', sans-serif;">Username</label>
-        <input class="bn br py-4 bg-transparent  mt-4  px-6" type="text" id="username" name="username" required>
-      </div>
-      <button class="btn btn--ghost mt-24  lg:w-3/5" id="redeem-button">Redeem</button>
+<div class="page-width">
+  <div id="redeem-container" class="bg-gradient br bn flex flex-col items-center justify-center gap-8 px-6 py-12">
+    <h3 class="color-primary mb-12">Redeem your code</h3>
+    <div class="flex flex-col  w-full lg:w-3/5">
+      <label for="code" class="pl-6" style="font-family: 'Hello Roti', sans-serif;">Code</label>
+      <input class="bn  br py-4 bg-transparent mt-4 px-6" type="text" id="code" name="code" required>
     </div>
-  
-    <div id="check-container" style="display: none;">
-      <p>Are you sure you want to redeem this code?</p>
-      <button id="claim-button">Claim</button>
-      <button id="cancel-button">Cancel</button>
+    <div class="flex flex-col  w-full lg:w-3/5">
+      <label for="username" class="pl-6" style="font-family: 'Hello Roti', sans-serif;">Username</label>
+      <input class="bn br py-4 bg-transparent  mt-4  px-6" type="text" id="username" name="username" required>
     </div>
-  
-    <div id="result-container"></div>
+    <button class="btn btn--ghost mt-24  lg:w-3/5" id="redeem-button">
+      Redeem
+      <span class="spinner" id="redeem-spinner"></span>
+    </button>
   </div>
-  
-  
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const redeemButton = document.getElementById('redeem-button');
-      const claimButton = document.getElementById('claim-button');
-      const cancelButton = document.getElementById('cancel-button');
-      const redeemContainer = document.getElementById('redeem-container');
-      const checkContainer = document.getElementById('check-container');
-      const resultContainer = document.getElementById('result-container');
-  
-      redeemButton.addEventListener('click', function() {
-        const code = document.getElementById('code').value;
-        const username = document.getElementById('username').value;
-  
-        if (!code || !username) {
-          resultContainer.textContent = 'Please enter both code and username.';
-          return;
-        }
-  
-        fetch('https://api.telanthric.shop/redeem', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ code, username }),
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-          if (data.success) {
-          setTimeout(() => {
-            checkQueue(username);
-          }, 2000);
-          } else {
-            resultContainer.textContent = data.message || data.error || 'An error occurred. Please try again.';
-          }
-        })
-        .catch(error => {
-          resultContainer.textContent = 'An error occurred. Please try again.';
-          console.error('Error:', error);
-        });
-      });
-  
-      function checkQueue(username) {
-        fetch('https://api.telanthric.shop/check', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username }),
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.prompt) {
-            redeemContainer.style.display = 'none';
-            checkContainer.style.display = 'block';
-          } else {
-            resultContainer.textContent = 'Username is not in queue. Please try again.';
-          }
-        })
-        .catch(error => {
-          resultContainer.textContent = 'An error occurred. Please try again.';
-          console.error('Error:', error);
-        });
+
+  <div id="check-container" style="display: none;">
+    <p>Are you sure you want to redeem this code?</p>
+    <button id="claim-button">Claim</button>
+    <button id="cancel-button">Cancel</button>
+  </div>
+
+  <div id="result-container"></div>
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const redeemButton = document.getElementById('redeem-button');
+    const claimButton = document.getElementById('claim-button');
+    const cancelButton = document.getElementById('cancel-button');
+    const redeemContainer = document.getElementById('redeem-container');
+    const checkContainer = document.getElementById('check-container');
+    const resultContainer = document.getElementById('result-container');
+    const redeemSpinner = document.getElementById('redeem-spinner');
+
+    function enableLoading() {
+      redeemButton.disabled = true;
+      redeemSpinner.style.display = 'inline-block';
+      redeemButton.textContent = 'Processing ';
+      redeemButton.appendChild(redeemSpinner);
+    }
+
+    function disableLoading() {
+      redeemButton.disabled = false;
+      redeemSpinner.style.display = 'none';
+      redeemButton.textContent = 'Redeem';
+    }
+
+    redeemButton.addEventListener('click', function() {
+      const code = document.getElementById('code').value;
+      const username = document.getElementById('username').value;
+
+      if (!code || !username) {
+        resultContainer.textContent = 'Please enter both code and username.';
+        return;
       }
-  
-      claimButton.addEventListener('click', function() {
-        const username = document.getElementById('username').value;
-  
-        fetch('https://api.telanthric.shop/claim', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username }),
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            resultContainer.textContent = `#${data.orderUnit} Redemption successful! Rewards: ${data.rewards.join(', ')}`;
-          } else {
-            resultContainer.textContent = data.message || 'An error occurred. Please try again.';
-          }
-          checkContainer.style.display = 'none';
-          redeemContainer.style.display = 'block';
-        })
-        .catch(error => {
-          resultContainer.textContent = 'An error occurred. Please try again.';
-          console.error('Error:', error);
-        });
-      });
-  
-      cancelButton.addEventListener('click', function() {
-        checkContainer.style.display = 'none';
-        redeemContainer.style.display = 'block';
-        resultContainer.textContent = '';
+
+      enableLoading();
+
+      fetch('https://api.telanthric.shop/redeem', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code, username }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          checkQueue(username);
+        } else {
+          resultContainer.textContent = data.message || 'An error occurred. Please try again.';
+          disableLoading();
+        }
+      })
+      .catch(error => {
+        resultContainer.textContent = 'An error occurred. Please try again.';
+        console.error('Error:', error);
+        disableLoading();
       });
     });
-  </script>
+
+    function checkQueue(username) {
+      fetch('https://api.telanthric.shop/check', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.queuePrompt) {
+          redeemContainer.style.display = 'none';
+          checkContainer.style.display = 'block';
+        } else {
+          resultContainer.textContent = 'Username is not in queue. Please try again.';
+        }
+        disableLoading();
+      })
+      .catch(error => {
+        resultContainer.textContent = 'An error occurred. Please try again.';
+        console.error('Error:', error);
+        disableLoading();
+      });
+    }
+
+    claimButton.addEventListener('click', function() {
+      const username = document.getElementById('username').value;
+
+      enableLoading();
+
+      fetch('https://api.telanthric.shop/claim', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          resultContainer.textContent = `Redemption successful! Rewards: ${data.rewards.join(', ')}`;
+        } else {
+          resultContainer.textContent = data.message || 'An error occurred. Please try again.';
+        }
+        checkContainer.style.display = 'none';
+        redeemContainer.style.display = 'block';
+        disableLoading();
+      })
+      .catch(error => {
+        resultContainer.textContent = 'An error occurred. Please try again.';
+        console.error('Error:', error);
+        disableLoading();
+      });
+    });
+
+    cancelButton.addEventListener('click', function() {
+      checkContainer.style.display = 'none';
+      redeemContainer.style.display = 'block';
+      resultContainer.textContent = '';
+      disableLoading();
+    });
+  });
+</script>
