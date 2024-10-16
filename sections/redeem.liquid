@@ -45,44 +45,103 @@
     border-top: 3px solid transparent;
     box-shadow: 0px 0px 9px 0px #5bc500;
   }
+  .question-mark {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #5bc500;
+    color: #000;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    max-width: 80%;
+    width: 400px;
+    border: 3px solid #5bc500;
+    box-shadow: 0px 0px 9px 0px #5bc500;
+  }
+  .popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  .popup-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
 </style>
 
 <div class="page-width">
   <div id="redeem-container" class="bg-gradient br bn flex flex-col items-center justify-center gap-8 px-6 py-12">
     <h3 class="color-primary mb-12">Redeem your code</h3>
-    <div class="flex flex-col  w-full lg:w-3/5">
-      <label for="code" class="pl-6" style="font-family: 'Hello Roti', sans-serif;">Code</label>
-      <input class="bn  br py-4 bg-transparent mt-4 px-6" type="text" id="code" name="code" required>
+    <div class="flex flex-col w-full lg:w-3/5">
+      <label for="userId" class="pl-6" style="font-family: 'Hello Roti', sans-serif;">
+        Roblox User ID
+        <span class="question-mark" id="userId-help">?</span>
+      </label>
+      <input class="bn br py-4 bg-transparent mt-4 px-6" type="text" id="userId" name="userId" required>
     </div>
-    <div class="flex flex-col  w-full lg:w-3/5">
-      <label for="username" class="pl-6" style="font-family: 'Hello Roti', sans-serif;">Username</label>
-      <input class="bn br py-4 bg-transparent  mt-4  px-6" type="text" id="username" name="username" required>
+    <div class="flex flex-col w-full lg:w-3/5">
+      <label for="dlcCode" class="pl-6" style="font-family: 'Hello Roti', sans-serif;">DLC Code</label>
+      <input class="bn br py-4 bg-transparent mt-4 px-6" type="text" id="dlcCode" name="dlcCode" required>
     </div>
-    <button class="btn btn--ghost mt-24  lg:w-3/5" id="redeem-button">
+    <button class="btn btn--ghost mt-24 lg:w-3/5" id="redeem-button">
       Redeem
       <span class="spinner" id="redeem-spinner"></span>
     </button>
   </div>
 
-  <div id="check-container" style="display: none;">
-    <p>Are you sure you want to redeem this code?</p>
-    <button id="claim-button">Claim</button>
-    <button id="cancel-button">Cancel</button>
-  </div>
-
   <div id="result-container"></div>
 </div>
 
+<div id="userId-popup" class="popup">
+  <span class="popup-close">&times;</span>
+  <div class="popup-title">How to find your Roblox User ID</div>
+  <ol>
+    <li>Go to <a href="https://www.roblox.com" target="_blank">roblox.com</a> on mobile or desktop browser. (This information is not available within the Roblox app)</li>
+    <li>Login to your account</li>
+    <li>Go to your Profile</li>
+    <li>Click in the website URL at the top of the page</li>
+    <li>Locate the set of numbers between users/ and /profile. This set of numbers is your Roblox User ID</li>
+    <li>Highlight and copy the set of numbers</li>
+    <li>On the Telanthric Redeem page, paste the set of numbers into the "Roblox User ID" field</li>
+  </ol>
+  <p>Note: Your User ID will always stay the same, even if you change your Roblox username</p>
+</div>
+
+<div id="confirm-popup" class="popup">
+  <span class="popup-close">&times;</span>
+  <div class="popup-title">Confirm Redemption</div>
+  <p>Are you sure your Roblox User ID and DLC Code are typed out correctly? Please double-check before you proceed.</p>
+  <button id="continue-editing">Continue Editing</button>
+  <button id="confirm-redeem">Redeem</button>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const redeemButton = document.getElementById('redeem-button');
-    const claimButton = document.getElementById('claim-button');
-    const cancelButton = document.getElementById('cancel-button');
     const redeemContainer = document.getElementById('redeem-container');
-    const checkContainer = document.getElementById('check-container');
     const resultContainer = document.getElementById('result-container');
     const redeemSpinner = document.getElementById('redeem-spinner');
+    const userIdHelp = document.getElementById('userId-help');
+    const userIdPopup = document.getElementById('userId-popup');
+    const confirmPopup = document.getElementById('confirm-popup');
+    const continueEditing = document.getElementById('continue-editing');
+    const confirmRedeem = document.getElementById('confirm-redeem');
 
     function enableLoading() {
       redeemButton.disabled = true;
@@ -97,14 +156,44 @@
       redeemButton.textContent = 'Redeem';
     }
 
-    redeemButton.addEventListener('click', function() {
-      const code = document.getElementById('code').value;
-      const username = document.getElementById('username').value;
+    function showPopup(popup) {
+      popup.style.display = 'block';
+    }
 
-      if (!code || !username) {
-        resultContainer.textContent = 'Please enter both code and username.';
+    function hidePopup(popup) {
+      popup.style.display = 'none';
+    }
+
+    userIdHelp.addEventListener('click', function() {
+      showPopup(userIdPopup);
+    });
+
+    document.querySelectorAll('.popup-close').forEach(function(closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        hidePopup(this.closest('.popup'));
+      });
+    });
+
+    redeemButton.addEventListener('click', function() {
+      const userId = document.getElementById('userId').value;
+      const dlcCode = document.getElementById('dlcCode').value;
+
+      if (!userId || !dlcCode) {
+        resultContainer.textContent = 'Please enter both Roblox User ID and DLC Code.';
         return;
       }
+
+      showPopup(confirmPopup);
+    });
+
+    continueEditing.addEventListener('click', function() {
+      hidePopup(confirmPopup);
+    });
+
+    confirmRedeem.addEventListener('click', function() {
+      hidePopup(confirmPopup);
+      const userId = document.getElementById('userId').value;
+      const dlcCode = document.getElementById('dlcCode').value;
 
       enableLoading();
 
@@ -113,60 +202,7 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ code, username }),
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          checkQueue(username);
-        } else {
-          resultContainer.textContent = data.message || 'An error occurred. Please try again.';
-          disableLoading();
-        }
-      })
-      .catch(error => {
-        resultContainer.textContent = 'An error occurred. Please try again.';
-        console.error('Error:', error);
-        disableLoading();
-      });
-    });
-
-    function checkQueue(username) {
-      fetch('https://api.telanthric.shop/check', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username }),
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.queuePrompt) {
-          redeemContainer.style.display = 'none';
-          checkContainer.style.display = 'block';
-        } else {
-          resultContainer.textContent = 'Username is not in queue. Please try again.';
-        }
-        disableLoading();
-      })
-      .catch(error => {
-        resultContainer.textContent = 'An error occurred. Please try again.';
-        console.error('Error:', error);
-        disableLoading();
-      });
-    }
-
-    claimButton.addEventListener('click', function() {
-      const username = document.getElementById('username').value;
-
-      enableLoading();
-
-      fetch('https://api.telanthric.shop/claim', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username }),
+        body: JSON.stringify({ userId, dlcCode }),
       })
       .then(response => response.json())
       .then(data => {
@@ -175,8 +211,6 @@
         } else {
           resultContainer.textContent = data.message || 'An error occurred. Please try again.';
         }
-        checkContainer.style.display = 'none';
-        redeemContainer.style.display = 'block';
         disableLoading();
       })
       .catch(error => {
@@ -184,13 +218,6 @@
         console.error('Error:', error);
         disableLoading();
       });
-    });
-
-    cancelButton.addEventListener('click', function() {
-      checkContainer.style.display = 'none';
-      redeemContainer.style.display = 'block';
-      resultContainer.textContent = '';
-      disableLoading();
     });
   });
 </script>
