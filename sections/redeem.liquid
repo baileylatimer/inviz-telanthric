@@ -271,8 +271,7 @@
         .then(data => {
           console.log(data.prompt)
           if (data.prompt == true) {
-            redeemContainer.style.display = 'none';
-            checkContainer.style.display = 'block';
+           completeClaim(username)
           } else {
             resultContainer.textContent = data.error || data.message || 'Username is not in queue. Please try again.';
           }
