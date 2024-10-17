@@ -83,6 +83,24 @@
     font-weight: bold;
     margin-bottom: 10px;
   }
+  .alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    z-index: 1001;
+    text-align: center;
+  }
+  .alert-success {
+    background-color: #5bc500;
+  }
+  .alert-error {
+    background-color: #ff0000;
+  }
 </style>
 
 <div class="page-width">
@@ -164,6 +182,16 @@
       popup.style.display = 'none';
     }
 
+    function showAlert(message, type) {
+      const alertElement = document.createElement('div');
+      alertElement.className = `alert alert-${type}`;
+      alertElement.textContent = message;
+      document.body.appendChild(alertElement);
+      setTimeout(() => {
+        alertElement.remove();
+      }, 5000);
+    }
+
     userIdHelp.addEventListener('click', function() {
       showPopup(userIdPopup);
     });
@@ -204,17 +232,27 @@
         },
         body: JSON.stringify({ userId, dlcCode }),
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(errorData => {
+            throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+          });
+        }
+        return response.json();
+      })
       .then(data => {
         if (data.success) {
+          showAlert(`Redemption successful! Rewards: ${data.rewards.join(', ')}`, 'success');
           resultContainer.textContent = `Redemption successful! Rewards: ${data.rewards.join(', ')}`;
         } else {
+          showAlert(data.message || 'An error occurred. Please try again.', 'error');
           resultContainer.textContent = data.message || 'An error occurred. Please try again.';
         }
         disableLoading();
       })
       .catch(error => {
-        resultContainer.textContent = 'An error occurred. Please try again.';
+        showAlert(error.message || 'An error occurred. Please try again.', 'error');
+        resultContainer.textContent = error.message || 'An error occurred. Please try again.';
         console.error('Error:', error);
         disableLoading();
       });
