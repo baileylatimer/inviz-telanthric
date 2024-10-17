@@ -258,9 +258,8 @@
         disableLoading();
       });
     });
-  });
 
-    function checkQueue(username) {
+        function checkQueue(username) {
         fetch('https://api.telanthric.shop/check', {
           method: 'POST',
           headers: {
@@ -308,4 +307,5 @@
           console.error('Error:', error);
         });
         }
+  });
 </script>
