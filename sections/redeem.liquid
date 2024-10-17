@@ -269,7 +269,6 @@
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data.prompt)
           if (data.prompt == true) {
            completeClaim(username)
           } else {
