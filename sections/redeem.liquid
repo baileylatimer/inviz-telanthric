@@ -230,7 +230,7 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId, dlcCode }),
+        body: JSON.stringify({ username: userId, code: dlcCode }),
       })
       .then(response => {
         if (!response.ok) {
