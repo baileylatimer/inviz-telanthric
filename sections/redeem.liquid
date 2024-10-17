@@ -222,8 +222,8 @@
 
     confirmRedeem.addEventListener('click', function() {
       hidePopup(confirmPopup);
-      const username = document.getElementById('userId').value;
-      const code = document.getElementById('dlcCode').value;
+      const userId = document.getElementById('userId').value;
+      const dlcCode = document.getElementById('dlcCode').value;
 
       enableLoading();
 
@@ -232,7 +232,7 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, code }),
+        body: JSON.stringify({ userId, dlcCode }),
       })
       .then(response => {
         if (!response.ok) {
