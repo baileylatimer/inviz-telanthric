@@ -299,8 +299,6 @@
           } else {
             resultContainer.textContent = data.message || data.error || 'An error occurred. Please try again.';
           }
-          checkContainer.style.display = 'none';
-          redeemContainer.style.display = 'block';
         })
         .catch(error => {
           resultContainer.textContent = 'An error occurred. Please try again.';
