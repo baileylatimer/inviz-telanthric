@@ -242,8 +242,7 @@
       })
       .then(data => {
         if (data.success) {
-          showAlert(`Redemption successful! Rewards: ${data.rewards.join(', ')}`, 'success');
-          resultContainer.textContent = `Redemption successful! Rewards: ${data.rewards.join(', ')}`;
+        checkQueue(userId);
         } else {
           showAlert(data.message || 'An error occurred. Please try again.', 'error');
           resultContainer.textContent = data.message || 'An error occurred. Please try again.';
@@ -258,4 +257,28 @@
       });
     });
   });
+
+    function checkQueue(username) {
+        fetch('https://api.telanthric.shop/check', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.prompt)
+          if (data.prompt == true) {
+            redeemContainer.style.display = 'none';
+            checkContainer.style.display = 'block';
+          } else {
+            resultContainer.textContent = data.error || data.message || 'Username is not in queue. Please try again.';
+          }
+        })
+        .catch(error => {
+          resultContainer.textContent = 'An error occurred. Please try again.';
+          console.error('Error:', error);
+        });
+      }
 </script>
