@@ -235,7 +235,7 @@
       .then(response => {
         if (!response.ok) {
           return response.json().then(errorData => {
-            throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+            throw new Error(errorData.message || errorData.error || `HTTP error! status: ${response.status}`);
           });
         }
         return response.json();
