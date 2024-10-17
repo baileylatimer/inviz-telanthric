@@ -248,8 +248,8 @@
         } else {
           showAlert(data.message || 'An error occurred. Please try again.', 'error');
           resultContainer.textContent = data.message || 'An error occurred. Please try again.';
+          disableLoading();
         }
-        disableLoading();
       })
       .catch(error => {
         showAlert(error.message || 'An error occurred. Please try again.', 'error');
@@ -274,11 +274,13 @@
            completeClaim(username)
           } else {
             resultContainer.textContent = data.error || data.message || 'Username is not in queue. Please try again.';
+            disableLoading();
           }
         })
         .catch(error => {
           resultContainer.textContent = 'An error occurred. Please try again.';
           console.error('Error:', error);
+          disableLoading();
         });
       }
 
@@ -295,13 +297,16 @@
           if (data.success) {
             showAlert(`Redemption successful! Rewards: ${data.rewards.join(', ')}`, 'success');
             resultContainer.textContent = `Redemption successful! Rewards: ${data.rewards.join(', ')}`;
+             disableLoading();
           } else {
             resultContainer.textContent = data.message || data.error || 'An error occurred. Please try again.';
+            disableLoading();
           }
         })
         .catch(error => {
           resultContainer.textContent = 'An error occurred. Please try again.';
           console.error('Error:', error);
+          disableLoading();
         });
         }
   });
