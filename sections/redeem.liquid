@@ -242,9 +242,9 @@
       })
       .then(data => {
         if (data.success) {
-        setTimeout({
-        checkQueue(userId);
-        }, 1000);
+            setTimeout(() => {
+            checkQueue(userId);
+            }, 1000);
         } else {
           showAlert(data.message || 'An error occurred. Please try again.', 'error');
           resultContainer.textContent = data.message || 'An error occurred. Please try again.';
