@@ -75,9 +75,10 @@
   }
   .popup-close {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
+top: 3px;
+  right: 19px;
+  cursor: pointer;
+  font-size: 36px;
   }
   .popup-title {
     font-weight: bold;
@@ -100,6 +101,11 @@
   }
   .alert-error {
     background-color: #ff0000;
+  }
+
+  .popup ol {
+
+  list-style: number !important;
   }
 </style>
 
@@ -129,16 +135,16 @@
 <div id="userId-popup" class="popup">
   <span class="popup-close">&times;</span>
   <div class="popup-title">How to find your Roblox User ID</div>
-  <ol>
-    <li>Go to <a href="https://www.roblox.com" target="_blank">roblox.com</a> on mobile or desktop browser. (This information is not available within the Roblox app)</li>
-    <li>Login to your account</li>
-    <li>Go to your Profile</li>
-    <li>Click in the website URL at the top of the page</li>
-    <li>Locate the set of numbers between users/ and /profile. This set of numbers is your Roblox User ID</li>
-    <li>Highlight and copy the set of numbers</li>
-    <li>On the Telanthric Redeem page, paste the set of numbers into the "Roblox User ID" field</li>
+  <ol class="ml-6">
+    <li class="mb-2">Go to <a href="https://www.roblox.com" target="_blank">roblox.com</a> on mobile or desktop browser. (This information is not available within the Roblox app)</li>
+    <li class="mb-2">Login to your account</li>
+    <li class="mb-2">Go to your Profile</li>
+    <li class="mb-2">Click in the website URL at the top of the page</li>
+    <li class="mb-2">Locate the set of numbers between users/ and /profile. This set of numbers is your Roblox User ID</li>
+    <li class="mb-2">Highlight and copy the set of numbers</li>
+    <li class="mb-2">On the Telanthric Redeem page, paste the set of numbers into the "Roblox User ID" field</li>
   </ol>
-  <p>Note: Your User ID will always stay the same, even if you change your Roblox username</p>
+  <p class="mt-8 pt-4" style="border-top: 3px solid #5bc500 ">Note: Your User ID will always stay the same, even if you change your Roblox username</p>
 </div>
 
 <div id="confirm-popup" class="popup">
