@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_section_HTFa8B": {
@@ -5,7 +14,7 @@
       "settings": {
         "hero_heading": "Telanthric Titans",
         "hero_subheading": "Any Purchase Unlocks Exclusive Unit in Toilet Tower Defense",
-        "hero_image": "shopify:\/\/shop_images\/titan_c51d4b33-7ed0-42f1-b083-14d571d0ee67.png",
+        "hero_image": "shopify://shop_images/titan_c51d4b33-7ed0-42f1-b083-14d571d0ee67.png",
         "heading_color": "#00ff00",
         "subheading_color": "#00ff00"
       }
@@ -15,23 +24,23 @@
       "settings": {
         "selected_product": "golden-speakerman-titan-plushie",
         "button_text": "Buy Now",
-        "end_date": "2024-08-15"
+        "end_date": "2024-11-30"
       }
     },
     "three_column_section_3HQMyF": {
       "type": "three-column-section",
       "settings": {
         "column_one_heading": "Have a Code?",
-        "column_one_button_url": "shopify:\/\/pages\/redeem",
+        "column_one_button_url": "shopify://pages/redeem",
         "column_one_button_label": "Redeem Now",
         "column_two_heading": "Play the Game",
-        "column_two_button_url": "https:\/\/www.roblox.com\/games\/13775256536\/EP-74-PART-1-Toilet-Tower-Defense",
+        "column_two_button_url": "https://www.roblox.com/games/13775256536/EP-74-PART-1-Toilet-Tower-Defense",
         "column_two_button_label": "Play on roblox.com",
         "column_three_heading": "Join the Army",
         "tiktok_url": "",
-        "instagram_url": "https:\/\/x.com\/Telanthric",
-        "youtube_url": "https:\/\/www.youtube.com\/@Telanthric",
-        "discord_url": "https:\/\/discord.com\/invite\/SrnQt2yDeZ"
+        "instagram_url": "https://x.com/Telanthric",
+        "youtube_url": "https://www.youtube.com/@Telanthric",
+        "discord_url": "https://discord.com/invite/SrnQt2yDeZ"
       }
     }
   },
