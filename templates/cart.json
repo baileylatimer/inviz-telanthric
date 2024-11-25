@@ -60,7 +60,7 @@
         "button_UELGQr": {
           "type": "button",
           "settings": {
-            "button_label": "Product Page",
+            "button_label": "Return to Home Page",
             "button_link": "https://telanthric.shop/",
             "button_style_secondary": false,
             "button_label_2": "",
