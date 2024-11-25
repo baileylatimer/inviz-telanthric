@@ -11,6 +11,7 @@
   "sections": {
     "cart-items": {
       "type": "main-cart-items",
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-4",
         "padding_top": 36,
@@ -33,6 +34,7 @@
         "subtotal",
         "buttons"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-4",
         "padding_top": 20,
@@ -72,7 +74,6 @@
         "text_FLjHLg",
         "button_UELGQr"
       ],
-      "disabled": true,
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
