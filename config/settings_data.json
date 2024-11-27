@@ -155,6 +155,20 @@
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
+      },
+      "15885745614559378752": {
+        "type": "shopify://apps/accessibly/blocks/app-embed/4b59303e-1141-4c8a-945f-bf4adb516864",
+        "disabled": false,
+        "settings": {
+          "themeColor": "#121212",
+          "iconColor": "#ffffff",
+          "showLogo": true,
+          "topBottomPosition": 10,
+          "rightLeftPosition": 10,
+          "iconSize": "small",
+          "iconCustomSize": 64,
+          "position": "middle-right"
+        }
       }
     },
     "color_schemes": {
