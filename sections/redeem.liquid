@@ -273,6 +273,7 @@ text-transform: uppercase;
       })
       .then(data => {
         if (data.success) {
+            showAlert(data.success, 'success');
             setTimeout(() => {
             checkQueue(userId);
             }, 1000);
