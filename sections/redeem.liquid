@@ -282,6 +282,7 @@ text-transform: uppercase;
       }
 
       try {
+        enableLoading();
         const response = await fetch(`http://localhost/user-info/${userId}`);
         const userData = await response.json();
 
@@ -293,12 +294,15 @@ text-transform: uppercase;
           document.getElementById('user-name').textContent = userData.username || '';
           document.getElementById('user-id').textContent = `ID: ${userId}`;
           showPopup(confirmPopup);
+          disableLoading();
         } else {
           showAlert('Unable to verify user information. Please check the User ID.', 'error');
+          disableLoading();
         }
       } catch (error) {
         console.error('Error fetching user info:', error);
         showAlert('Error verifying user information. Please try again.', 'error');
+        disableLoading();
       }
     });
 
