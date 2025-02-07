@@ -286,9 +286,6 @@ text-transform: uppercase;
         const response = await fetch(`http://localhost/user-info/${userId}`);
         const userData = await response.json();
 
-        console.log(`succ`,userData.success)
-        console.log(userData)
-        
         if (userData.success) {
           document.getElementById('user-headshot').src = userData.headshot || '';
           document.getElementById('user-name').textContent = userData.username || '';
