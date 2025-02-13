@@ -169,6 +169,11 @@
           "iconCustomSize": 64,
           "position": "middle-right"
         }
+      },
+      "7002299155580658037": {
+        "type": "shopify://apps/reamaze-live-chat-helpdesk/blocks/reamaze-config/ef7a830c-d722-47c6-883b-11db06c95733",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
