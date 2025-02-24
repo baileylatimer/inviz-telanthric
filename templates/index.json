@@ -21,10 +21,11 @@
     },
     "two_column_section_UU8dRy": {
       "type": "two-column-section",
+      "custom_css": [],
       "settings": {
         "selected_product": "ultimate-telanthric-titan-plushie",
         "button_text": "Buy Now",
-        "end_date": "2020-01-01"
+        "end_date": "2020-01-02"
       }
     },
     "three_column_section_3HQMyF": {
