@@ -28,6 +28,40 @@
         "end_date": "2024-11-20"
       }
     },
+    "newsletter_zfjdCJ": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_GtG9Mt": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Subscribe to our emails",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_MbHAqd": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Sign up to get notified of our next plushie launch</p>"
+          }
+        },
+        "email_form_pDqniz": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_GtG9Mt",
+        "paragraph_MbHAqd",
+        "email_form_pDqniz"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "three_column_section_3HQMyF": {
       "type": "three-column-section",
       "settings": {
@@ -48,6 +82,7 @@
   "order": [
     "hero_section_HTFa8B",
     "two_column_section_UU8dRy",
+    "newsletter_zfjdCJ",
     "three_column_section_3HQMyF"
   ]
 }
